@@ -1,14 +1,23 @@
-#[inline(never)]
-fn acquire_lock<X>(_x : &X) {
-    // ! no-op
+extern "C" {
+    fn _acquire_lock(x : &u64);
+    fn _release_lock(x : &u64);
 }
 
 #[inline(never)]
-fn release_lock<X>(_x : &X) {
-    // ! no-op
+fn acquire_lock(x : &u64) {
+    unsafe {
+        _acquire_lock(x);
+    }
 }
 
-fn locks<X>(x : &X) {
+#[inline(never)]
+fn release_lock(x : &u64) {
+    unsafe {
+        _release_lock(x);
+    }
+}
+
+fn locks(x : &u64) {
 
     acquire_lock(x);
     let a = 0;
@@ -17,7 +26,7 @@ fn locks<X>(x : &X) {
 
 }
 
-fn deadlocks<X>(x : &X) {
+fn deadlocks(x : &u64) {
 
     acquire_lock(x);
     let a = 1;
@@ -34,7 +43,7 @@ struct X {
 
 fn main() {
 
-    let x = X { a : 0, b : 0 };
+    let x = 64;
     deadlocks(&x);
 
 }
