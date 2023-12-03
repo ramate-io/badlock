@@ -1,0 +1,39 @@
+[workspace]
+resolver = "2"
+members = [
+
+    "badlock/clis/badlock",
+
+]
+
+[workspace.package]
+version = "0.1.0"
+edition = "2021"
+license = "MIT OR Apache-2.0"
+authors = ["Liam Monninger <l.mak.monninger@gmail.com>"]
+homepage = "https://ramate.io"
+publish = false
+repository = "https://github.com/many-branches/badlock"
+rust-version = "1.70"
+
+[workspace.dependencies]
+
+# general
+anyhow = "1.0.44"
+futures = "0.3.17"
+rand = "0.8.4"
+bcs = "0.1.0"
+tempfile = "3.2.0"
+tracing = "0.1.37"
+tracing-appender = "0.2.2"
+tracing-subscriber = { version = "0.3.15", default-features = false, features = [
+  "std",
+  "smallvec",
+  "fmt",
+  "ansi",
+  "time",
+  "json",
+  "registry",
+  "env-filter",
+] }
+ctor = "0.2.5"
