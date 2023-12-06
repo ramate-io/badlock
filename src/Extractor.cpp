@@ -2,6 +2,15 @@
 
 #include "llvm/IR/Instruction.h"
 
+std::string Extractor::instToString(Instruction *L) {
+    uintptr_t id = reinterpret_cast<uintptr_t>(L);
+    std::string instrStr;
+    llvm::raw_string_ostream rso(instrStr);
+    L->print(rso);
+    rso << " @ ID: " << id;  // Append the unique identifier
+    return rso.str();
+}
+
 void Extractor::addDef(const InstMapTy &InstMap, Value *X, Instruction *L) {
   if (InstMap.find(X) == InstMap.end())
     return;
@@ -138,12 +147,14 @@ void Extractor::extractConstraints(const InstMapTy &InstMap, Instruction *I) {
 
   } else if (CallInst *CI = dyn_cast<CallInst>(I)) {
 
+    errs() << "CallInst: " << *CI << "\n";
     addDef(
       InstMap,
       CI,
       CI
     );
 
+    errs() << "Extracting args...\n";
     for (unsigned i = 0; i < CI->getNumOperands() - 1; ++i) {
       Value *Arg = CI->getArgOperand(i);
        addUse(
@@ -153,11 +164,15 @@ void Extractor::extractConstraints(const InstMapTy &InstMap, Instruction *I) {
       );
     }
 
+    errs() << "Checking taint...\n";
     if (isTaintedInput(CI)){
+      errs() << "Is tainted input...\n";
       addTaint(InstMap, CI);
     } else if (isSanitizer(CI)){
+      errs() << "Is sanitizer...\n";
       addSanitizer(InstMap, CI);
     }
+    errs() << "Done with CallInst...\n";
 
   } else if (CastInst *CI = dyn_cast<CastInst>(I)) {
 

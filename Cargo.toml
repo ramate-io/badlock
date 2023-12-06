@@ -3,6 +3,7 @@ resolver = "2"
 members = [
 
     "badlock/clis/badlock",
+    "badlock/lock-detection",
 
     # tests
     "test/mock-deadlock",

@@ -43,6 +43,8 @@ public:
   void addTaint(const InstMapTy &InstMap, Instruction *L);
   void addSanitizer(const InstMapTy &InstMap, Instruction *L);
 
+  std::string instToString(Instruction *L);
+
   void extractConstraints(const InstMapTy &InstMap, Instruction *I);
 
   void printTuple(std::string Name, Value *V1, Value *V2) {

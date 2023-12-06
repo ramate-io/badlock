@@ -47,4 +47,4 @@ in(inst, def_inst) :- out(prev_inst, def_inst), next(prev_inst, inst).
 edge(from, to) :- def(v, from), use(v, to), in(to, from).
 path(from, to) :- taint(from), edge(from, to).
 path(prev, next) :- path(prev, almost), !sanitizer(almost), edge(almost, next).
-alarm(inst) :- div(zero, inst), path(_, zero).
+alarm(inst) :- path(_, inst).

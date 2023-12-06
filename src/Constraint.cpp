@@ -20,6 +20,7 @@
 using namespace llvm;
 
 int main(int argc, char **argv) {
+
   if (argc < 3) {
     printf("usage: %s [target] [output dir]\n", argv[0]);
     return 1;
@@ -48,9 +49,12 @@ int main(int argc, char **argv) {
     }
   }
 
+  errs() << "Extracting constraints...\n";
   for (auto &F : *Mod) {
     for (inst_iterator I = inst_begin(F), E = inst_end(F); I != E; I++) {
+      errs() << "Extracting constraints for: " << *I << "\n";
       Ext.extractConstraints(InstMap, &*I);
     }
   }
+
 }

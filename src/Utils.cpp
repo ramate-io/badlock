@@ -5,19 +5,24 @@
 const char *WHITESPACES = " \t\n\r";
 
 std::string toString(Value *Val) {
-  std::string Code;
-  raw_string_ostream SS(Code);
-  Val->print(SS);
-  Code.erase(0, Code.find_first_not_of(WHITESPACES));
-  auto RetVal = Code.substr(0, Code.find_first_of(WHITESPACES));
-  if (RetVal == "ret" || RetVal == "br" || RetVal == "store") {
-    return Code;
-  }
-  if (RetVal == "i1" || RetVal == "i8" || RetVal == "i32" || RetVal == "i64") {
-    RetVal = Code;
-  }
-  return RetVal;
+    std::string Code;
+    raw_string_ostream SS(Code);
+    Val->print(SS);
+    Code.erase(0, Code.find_first_not_of(WHITESPACES));
+
+    uintptr_t id = reinterpret_cast<uintptr_t>(Val);
+    std::string idStr = " @ ID: " + std::to_string(id);
+
+    auto RetVal = Code.substr(0, Code.find_first_of(WHITESPACES));
+    if (RetVal == "ret" || RetVal == "br" || RetVal == "store") {
+        return Code + idStr;
+    }
+    if (RetVal == "i1" || RetVal == "i8" || RetVal == "i32" || RetVal == "i64") {
+        RetVal = Code;
+    }
+    return RetVal + idStr;
 }
+
 
 std::vector<Instruction *> getPredecessors(Instruction *I) {
   std::vector<Instruction *> Ret;
@@ -40,9 +45,15 @@ std::vector<Instruction *> getPredecessors(Instruction *I) {
 }
 
 bool isTaintedInput(CallInst *CI) {
-  return CI->getCalledFunction()->getName().equals("tainted_input");
+  Function *calledFunction = CI->getCalledFunction();
+  if (calledFunction && calledFunction->hasName())
+    return calledFunction->getName().equals("_acquire_lock");
+  return false;
 }
 
 bool isSanitizer(CallInst *CI) {
-  return CI->getCalledFunction()->getName().equals("sanitizer");
+  Function *calledFunction = CI->getCalledFunction();
+  if (calledFunction && calledFunction->hasName())
+    return calledFunction->getName().equals("_release_lock");
+  return false;
 }

@@ -1,0 +1,7 @@
+[package]
+name = "lock-detection"
+version = "0.1.0"
+edition = "2021"
+
+[dependencies]
+crepe = "0.1.8"
