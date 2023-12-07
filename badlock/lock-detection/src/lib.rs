@@ -1,2 +1,2 @@
-pub mod lock_detection;
-pub use lock_detection::*;
+pub mod reentrant_lock_detection;
+pub mod util;

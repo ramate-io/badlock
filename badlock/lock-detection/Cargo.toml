@@ -5,3 +5,4 @@ edition = "2021"
 
 [dependencies]
 crepe = "0.1.8"
+bimap = "0.6"
