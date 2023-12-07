@@ -43,7 +43,7 @@ crepe! {
 
     @output
     #[derive(Debug)]
-    pub struct Deadlock(pub usize, pub usize);
+    pub struct Deadlock(pub usize, pub usize, pub usize);
 
     @output
     #[derive(Debug)]
@@ -63,7 +63,7 @@ crepe! {
     Edge(from_inst, to_inst) <- Def(var, from_inst), UseVar(var, to_inst), In(to_inst, from_inst);
     Path(from_inst, to) <- Lock(from_inst, _), Edge(from_inst, to);
     Path(prev, next) <- Path(prev, almost), !Release(almost, _), Edge(almost, next);
-    Deadlock(inst, var) <- Lock(inst, var), Path(_, inst);
+    Deadlock(acquired_inst, var, reentrant_inst) <- Lock(reentrant_inst, var), Path(acquired_inst, reentrant_inst);
 
 }
 
@@ -101,6 +101,8 @@ impl ReentrantDeadlockPriors {
 
         let mut runtime = Crepe::new();
 
+        println!("{:?}", self);
+
         runtime.extend(self.defs.iter().cloned());
         runtime.extend(self.use_vars.iter().cloned());
         runtime.extend(self.nexts.iter().cloned());
@@ -108,7 +110,11 @@ impl ReentrantDeadlockPriors {
         runtime.extend(self.locks.iter().cloned());
         runtime.extend(self.releases.iter().cloned());
 
-        runtime.run().into()
+        let res = runtime.run().into();
+
+        println!("{:?}", res);
+
+        res
 
     }
 
@@ -195,10 +201,12 @@ pub mod test {
             Lock(2, 0),
         ]);
 
-        let deadlocks = facts.compute().deadlock;
+        let posts = facts.compute();
 
-        assert_eq!(deadlocks.len(), 1);
-        assert!(deadlocks.contains(&Deadlock(2, 0)));
+        println!("{:?}", posts);
+
+        assert_eq!(posts.deadlock.len(), 1);
+        assert!(posts.deadlock.contains(&Deadlock(0, 0, 2)));
 
     }
 
@@ -315,7 +323,7 @@ pub mod generic {
     pub struct Out<Symbol>(pub Symbol, pub Symbol);
 
     #[derive(Debug, Clone, PartialEq, Eq, Hash)]
-    pub struct Deadlock<Symbol>(pub Symbol, pub Symbol);
+    pub struct Deadlock<Symbol>(pub Symbol, pub Symbol, pub Symbol);
 
     #[derive(Debug, Clone, PartialEq, Eq, Hash)]
     pub struct Edge<Symbol>(pub Symbol, pub Symbol);
@@ -323,6 +331,7 @@ pub mod generic {
     #[derive(Debug, Clone, PartialEq, Eq, Hash)]
     pub struct Path<Symbol>(pub Symbol, pub Symbol);
 
+    #[derive(Debug)]
     pub struct ReentrantDeadlockPriors<Symbol> {
         pub defs : HashSet<Def<Symbol>>,
         pub use_vars : HashSet<UseVar<Symbol>>,
@@ -347,6 +356,7 @@ pub mod generic {
 
     }
 
+    #[derive(Debug)]
     pub struct ReentrantDeadlockPosts<Symbol> {
         pub kill : HashSet<Kill<Symbol>>,
         pub in_ : HashSet<In<Symbol>>,
