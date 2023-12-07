@@ -267,7 +267,7 @@ pub mod test {
     pub struct MySymbol(String);
 
     #[test]
-    fn test_maps_and_unmaps() {
+    fn test_maps_and_unmaps_deadlock_simple() {
 
         let mut program : Program<MySymbol> = Program::new();
 
@@ -312,5 +312,46 @@ pub mod test {
 
     }
 
+    #[test]
+    fn test_maps_and_unmaps_deadlock_simple_lock_and_release() {
+
+        let mut program : Program<MySymbol> = Program::new();
+
+        program.extend(vec![
+            Def(MySymbol("x".to_string()), MySymbol("inst-0".to_string())),
+            Def(MySymbol("y".to_string()), MySymbol("inst-1".to_string())),
+            Def(MySymbol("x".to_string()), MySymbol("inst-2".to_string())),
+        ]);
+
+        program.extend(vec![
+            UseVar(MySymbol("x".to_string()), MySymbol("inst-0".to_string())),
+            UseVar(MySymbol("y".to_string()), MySymbol("inst-1".to_string())),
+            UseVar(MySymbol("x".to_string()), MySymbol("inst-2".to_string())),
+            UseVar(MySymbol("x".to_string()), MySymbol("inst-3".to_string())),
+        ]);
+
+        program.extend(vec![
+            Next(MySymbol("inst-0".to_string()), MySymbol("inst-1".to_string())),
+            Next(MySymbol("inst-1".to_string()), MySymbol("inst-2".to_string())),
+            Next(MySymbol("inst-2".to_string()), MySymbol("inst-3".to_string())),
+            Next(MySymbol("inst-3".to_string()), MySymbol("inst-4".to_string()))
+        ]);
+
+        program.extend(vec![
+            Lock(MySymbol("inst-0".to_string()), MySymbol("x".to_string())),
+            Lock(MySymbol("inst-3".to_string()), MySymbol("x".to_string())),
+        ]);
+
+        program.extend(vec![
+            Release(MySymbol("inst-2".to_string()), MySymbol("x".to_string())),
+        ]);
+
+        let posts = program.compute();
+
+        println!("{:#?}", posts);
+
+        assert!(posts.deadlock.is_empty());
+
+    }
 
 }
