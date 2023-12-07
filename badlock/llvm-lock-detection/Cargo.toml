@@ -1,0 +1,12 @@
+[package]
+name = "llvm-lock-detection"
+version = "0.1.0"
+edition = "2021"
+
+[lib]
+crate-type = ["cdylib"]
+
+[dependencies]
+lock-detection = { workspace = true }
+llvm-plugin = { workspace = true }
+rustc-demangle = { workspace = true }
