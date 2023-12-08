@@ -10,3 +10,6 @@ crate-type = ["cdylib"]
 lock-detection = { workspace = true }
 llvm-plugin = { workspace = true }
 rustc-demangle = { workspace = true }
+either = { workspace = true }
+regex = { workspace = true }
+anyhow = { workspace = true }

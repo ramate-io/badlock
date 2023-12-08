@@ -1,0 +1,14 @@
+{
+    "name": "Rust and LLVM 16",
+    "dockerFile": "Dockerfile",
+    "settings": { 
+        "terminal.integrated.shell.linux": "/bin/bash"
+    },
+    "extensions": [
+        "rust-lang.rust-analyzer",
+        "mutantdino.resourcemonitor"
+    ],
+    "forwardPorts": [],
+    "postCreateCommand": "rustup update",
+    "remoteUser": "root"
+}

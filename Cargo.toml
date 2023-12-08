@@ -48,7 +48,9 @@ tracing-subscriber = { version = "0.3.15", default-features = false, features = 
 ctor = "0.2.5"
 crepe = "0.1.8"
 bimap = "0.6"
+either = "1.6.1"
 
-inkwell = "0.2.0"
-llvm-plugin = "0.4.1"
+inkwell = { version = "0.2.0", features = ["llvm16-0"] }
+llvm-plugin = { version = "0.4.1", features = ["llvm16-0"] }
 rustc-demangle = "0.1.23"
+regex = "1.5.4"
