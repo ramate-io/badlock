@@ -33,4 +33,27 @@ make
 
 Inspect the analysis output in the `%.analysis` artifacts. You should see something like this...
 ```
+MAY DEADLOCK!
+__________
+DEADLOCK #0
+	FIRST LOCK: Symbol("InstructionValue { instruction_value: Value { name: \"\", address: 0xaaaacc70a6a0, is_const: false, is_null: false, is_undef: false, llvm_value: \"  call void @\\\"_ZN3std4sync5mutex14Mutex$LT$T$GT$4lock17h8dad7da268b6d1f1E\\\"(ptr sret(%\\\"core::result::Result<std::sync::mutex::MutexGuard<\\'_, i32>, std::sync::poison::PoisonError<std::sync::mutex::MutexGuard<\\'_, i32>>>\\\") %_3, ptr align 4 %safe_x)\", llvm_type: \"void\" } }")
+
+	RESOURCE: Symbol("%safe_x 0xaaaacc70a3b0")
+
+	SECOND_LOCK: Symbol("InstructionValue { instruction_value: Value { name: \"\", address: 0xaaaacc70cf80, is_const: false, is_null: false, is_undef: false, llvm_value: \"  invoke void @\\\"_ZN3std4sync5mutex14Mutex$LT$T$GT$4lock17h8dad7da268b6d1f1E\\\"(ptr sret(%\\\"core::result::Result<std::sync::mutex::MutexGuard<\\'_, i32>, std::sync::poison::PoisonError<std::sync::mutex::MutexGuard<\\'_, i32>>>\\\") %_19, ptr align 4 %safe_x)\\n          to label %bb10 unwind label %cleanup\", llvm_type: \"void\" } }")
+__________
 ```
+
+### Challenges
+This turned out to be quite a challenging project owing primarily to the following reasons:
+- Rust function mangling and pointer aliasing is quite difficutly to parse.
+- `inkwell` is primarily intended for building LLVM IR and not for analyzing it. Notable shortcomings are...
+	- No ability to get `CallSites`.
+	- No ability to get predecessors.
+	- Limited ability to downcast.
+- As a result of the above, a large portion LLVM logic needed to be written as string parsing operations.
+
+### Future Work
+- We would like to extend the analysis to detect deadlocks in more complex programs. Testing here has not been extensive.
+- We would like to implement the analysis for other synchronization primitives such as `std::sync::RwLock`.
+- We would like to implement a rust toolchain for the analysis.
