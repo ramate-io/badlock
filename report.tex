@@ -1,0 +1,113 @@
+\documentclass[conference]{IEEEtran}
+\IEEEoverridecommandlockouts
+% The preceding line is only needed to identify funding in the first footnote. If that is unneeded, please comment it out.
+\usepackage{cite}
+\usepackage{amsmath,amssymb,amsfonts}
+\usepackage{algorithmic}
+\usepackage{graphicx}
+\usepackage{textcomp}
+\usepackage{xcolor}
+\def\BibTeX{{\rm B\kern-.05em{\sc i\kern-.025em b}\kern-.08em
+    T\kern-.1667em\lower.7ex\hbox{E}\kern-.125emX}}
+\begin{document}
+
+\title{Badlock: Static Reentrant Deadlock Detection for Rust via Taint Analysis}
+
+\author{\IEEEauthorblockN{Liam Monninger}
+\IEEEauthorblockA{\textit{Department of Computer and Information Science, SEAS} \\
+\textit{University of Pennsylvania}\\
+Philadelphia, PA, USA \\}}
+
+\maketitle
+
+\begin{abstract}
+The badlock
+\end{abstract}
+
+\begin{IEEEkeywords}
+static analysis, deadlocks, rust, taint analysis
+\end{IEEEkeywords}
+
+\section{Introduction}
+
+\subsection{Taint Analysis}
+
+\subsection{Rust std::sync}
+
+\section{Badlock}
+
+\subsection{Datalog Program}
+
+\subsection{Evaluation}
+We are currently capable of detecting deadlocks in the following simple programs. Programs of this form were defined as the original POC.
+
+\subsubsection{No Deadlock}
+We were able to successfully analyzing clearly non-deadlocking Rust programs wherein no lock is ever acquired. The below is an example of a passing program.
+
+\begin{verbatim}
+fn main(){
+
+    let a = 0;
+    for i in 0..10 {
+        let b = a + i;
+        println!("{}", b);
+    }
+    
+}
+\end{verbatim}
+
+\subsubsection{Simple Deadlock}
+We successfully analyzed simple deadlocking programs which use std::sync::Mutex such as the following.
+
+\begin{verbatim}
+use std::sync::Mutex;
+
+fn main() {
+
+    let mut safe_x = Mutex::new(64);
+    
+    let mut guard = safe_x.lock().unwrap();
+    *guard += 1;
+    println!("Here is fine x: {}", *guard);
+
+    let mut deadlock = safe_x.lock().unwrap();
+    *deadlock += 1;
+    println!("Should never get here x: {}", *deadlock);
+
+}
+\end{verbatim}
+
+\subsubsection{Appropriate Lock Acquisition}
+We successfully analyzed simple programs where locks are acquired and locked in a manner preventing reentrancy. Notably, we successfully analyzed the implicit lock releases that occur when a Rust lifetime ends.
+
+\begin{verbatim}
+use std::sync::Mutex;
+
+fn main() {
+
+    let mut x = 64;
+    let mut safe_x = Mutex::new(x);
+    
+    {
+        let mut guard = safe_x.lock().unwrap();
+        *guard += 1;
+        println!("Here is fine x: {}", *guard);
+    }
+
+    {
+        let mut no_deadlock = safe_x.lock().unwrap();
+        *no_deadlock += 1;
+        println!("Should also get here x: {}", *no_deadlock);
+    }
+
+}
+\end{verbatim}
+
+\section{Conclusion}
+
+\begin{thebibliography}{00}
+
+\end{thebibliography}
+
+
+\end{document}
