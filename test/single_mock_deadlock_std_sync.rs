@@ -10,6 +10,6 @@ fn main() {
 
     let mut deadlock = safe_x.lock().unwrap();
     *deadlock += 1;
-    println!("Should never get here x: {}", *guard);
+    println!("Should never get here x: {}", *deadlock);
 
 }

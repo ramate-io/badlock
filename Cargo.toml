@@ -5,12 +5,7 @@ members = [
     "badlock/clis/badlock",
     "badlock/lock-detection",
     "badlock/llvm-lock-detection",
-
-    # tests
-    "test/mock-deadlock",
-    "test/mock-no-deadlock",
-    "test/simple-deadlock",
-    "test/simple-no-deadlock"
+ 
 
 ]
 

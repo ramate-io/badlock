@@ -213,14 +213,6 @@ source = "registry+https://github.com/rust-lang/crates.io-index"
 checksum = "f665ee40bc4a3c5590afb1e9677db74a508659dfd71e126420da8274909a0167"
 
 [[package]]
-name = "mock-deadlock"
-version = "0.1.0"
-
-[[package]]
-name = "mock-no-deadlock"
-version = "0.1.0"
-
-[[package]]
 name = "once_cell"
 version = "1.18.0"
 source = "registry+https://github.com/rust-lang/crates.io-index"
@@ -356,14 +348,6 @@ name = "semver"
 version = "1.0.20"
 source = "registry+https://github.com/rust-lang/crates.io-index"
 checksum = "836fa6a3e1e547f9a2c4040802ec865b5d85f4014efe00555d7090a3dcaa1090"
-
-[[package]]
-name = "simple-deadlock"
-version = "0.1.0"
-
-[[package]]
-name = "simple-no-deadlock"
-version = "0.1.0"
 
 [[package]]
 name = "smallvec"

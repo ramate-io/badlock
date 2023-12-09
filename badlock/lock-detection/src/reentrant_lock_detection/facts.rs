@@ -47,11 +47,11 @@ crepe! {
 
     @output
     #[derive(Debug)]
-    pub struct Edge(pub usize, pub usize);
+    pub struct Edge(pub usize, pub usize, pub usize);
 
     @output
     #[derive(Debug)]
-    pub struct Path(pub usize, pub usize);
+    pub struct Path(pub usize, pub usize, pub usize);
 
     // Reaching definitions
     Kill(curr_inst, old_inst) <- Def(var, curr_inst), Def(var, old_inst);
@@ -60,10 +60,12 @@ crepe! {
     In(inst, def_inst) <- Out(prev_inst, def_inst), Next(prev_inst, inst);
 
     // Deadlock taint
-    Edge(from_inst, to_inst) <- Def(var, from_inst), UseVar(var, to_inst), In(to_inst, from_inst);
-    Path(from_inst, to) <- Lock(from_inst, _), Edge(from_inst, to);
-    Path(prev, next) <- Path(prev, almost), !Release(almost, _), Edge(almost, next);
-    Deadlock(acquired_inst, var, reentrant_inst) <- Lock(reentrant_inst, var), Path(acquired_inst, reentrant_inst);
+    Edge(from_inst, to_inst, var) <- Def(var, from_inst), UseVar(var, to_inst), In(to_inst, from_inst);
+    // handle wrappers (indirection)
+    // Edge(from_inst, to_inst, var) <- Wrap(wrapper, var), UseVar(wrapper, to_inst), In(to_inst, from_inst);
+    Path(from_inst, to_inst, var) <- Lock(from_inst, var), Edge(from_inst, to_inst, var);
+    Path(prev, next, var) <- Path(prev, almost, var), !Release(almost, var), Edge(almost, next, var);
+    Deadlock(acquired_inst, var, reentrant_inst) <- Lock(reentrant_inst, var), Path(acquired_inst, reentrant_inst, var);
 
 }
 
@@ -101,8 +103,6 @@ impl ReentrantDeadlockPriors {
 
         let mut runtime = Crepe::new();
 
-        println!("{:?}", self);
-
         runtime.extend(self.defs.iter().cloned());
         runtime.extend(self.use_vars.iter().cloned());
         runtime.extend(self.nexts.iter().cloned());
@@ -111,8 +111,6 @@ impl ReentrantDeadlockPriors {
         runtime.extend(self.releases.iter().cloned());
 
         let res = runtime.run().into();
-
-        println!("{:?}", res);
 
         res
 
@@ -250,6 +248,47 @@ pub mod test {
 
     }
 
+    #[test]
+    pub fn test_reentrant_deadlocks_simple_lock_and_release_other() {
+
+        let mut facts = ReentrantDeadlockPriors::new();
+
+        facts.extend(vec![
+            Def(0xcafe, 0),
+            Def(1, 1),
+            Def(0xcafe, 2),
+        ]);
+
+        facts.extend(vec![
+            UseVar(0xcafe, 0),
+            UseVar(1, 1),
+            UseVar(0xcafe, 2),
+            UseVar(0xcafe, 3),
+        ]);
+
+        facts.extend(vec![
+            Next(0, 1),
+            Next(1, 2),
+            Next(2, 3),
+            Next(3, 4),
+        ]);
+
+        facts.extend(vec![
+            Lock(0, 0xcafe),
+            Lock(3, 0xcafe),
+        ]);
+
+        facts.extend(vec![
+            Release(2, 0xd2de), // this realease is not for the lock
+        ]);
+
+        let posts = facts.compute();
+
+        println!("{:?}", posts);
+
+        assert!(!posts.deadlock.is_empty());
+
+    }
 
 }
 
@@ -326,10 +365,10 @@ pub mod generic {
     pub struct Deadlock<Symbol>(pub Symbol, pub Symbol, pub Symbol);
 
     #[derive(Debug, Clone, PartialEq, Eq, Hash)]
-    pub struct Edge<Symbol>(pub Symbol, pub Symbol);
+    pub struct Edge<Symbol>(pub Symbol, pub Symbol, pub Symbol);
 
     #[derive(Debug, Clone, PartialEq, Eq, Hash)]
-    pub struct Path<Symbol>(pub Symbol, pub Symbol);
+    pub struct Path<Symbol>(pub Symbol, pub Symbol, pub Symbol);
 
     #[derive(Debug)]
     pub struct ReentrantDeadlockPriors<Symbol> {

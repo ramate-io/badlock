@@ -51,7 +51,21 @@ bool isTaintedInput(CallInst *CI) {
   return false;
 }
 
-bool isSanitizer(CallInst *CI) {
+bool isCExternLockCall(CallInst *CI) {
+  Function *calledFunction = CI->getCalledFunction();
+  if (calledFunction && calledFunction->hasName())
+    return calledFunction->getName().equals("_acquire_lock");
+  return false;
+}
+
+bool isLockCall(CallInst *CI) {
+  Function *calledFunction = CI->getCalledFunction();
+  if (calledFunction && calledFunction->hasName())
+    return calledFunction->getName().equals("_acquire_lock");
+  return false;
+}
+
+bool isReleaseCall(CallInst *CI) {
   Function *calledFunction = CI->getCalledFunction();
   if (calledFunction && calledFunction->hasName())
     return calledFunction->getName().equals("_release_lock");

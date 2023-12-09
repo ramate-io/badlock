@@ -55,11 +55,26 @@ impl <Symbol> Program<Symbol>
         for wrap in self.priors.wraps.iter() {
             let wrap = Wrap(
                 self.symbol_mapping.unmap(wrap.0).unwrap(), 
-                self.symbol_mapping.unmap(wrap.1).unwrap()
+                self.symbol_mapping.unmap(wrap.1).unwrap(),
             );
             priors.wraps.insert(wrap);
         }
 
+        for lock in self.priors.locks.iter() {
+            let lock = Lock(
+                self.symbol_mapping.unmap(lock.0).unwrap(), 
+                self.symbol_mapping.unmap(lock.1).unwrap()
+            );
+            priors.locks.insert(lock);
+        }
+
+        for release in self.priors.releases.iter() {
+            let release = Release(
+                self.symbol_mapping.unmap(release.0).unwrap(), 
+                self.symbol_mapping.unmap(release.1).unwrap()
+            );
+            priors.releases.insert(release);
+        }
 
        priors
 
@@ -106,7 +121,8 @@ impl <Symbol> Program<Symbol>
         for edge in inner_posts.edge.iter() {
             let edge = Edge(
                 self.symbol_mapping.unmap(edge.0).unwrap(), 
-                self.symbol_mapping.unmap(edge.1).unwrap()
+                self.symbol_mapping.unmap(edge.1).unwrap(),
+                self.symbol_mapping.unmap(edge.2).unwrap()
             );
             posts.edge.insert(edge);
         }
@@ -114,7 +130,8 @@ impl <Symbol> Program<Symbol>
         for path in inner_posts.path.iter() {
             let path = Path(
                 self.symbol_mapping.unmap(path.0).unwrap(), 
-                self.symbol_mapping.unmap(path.1).unwrap()
+                self.symbol_mapping.unmap(path.1).unwrap(),
+                self.symbol_mapping.unmap(path.2).unwrap()
             );
             posts.path.insert(path);
         }
@@ -204,7 +221,7 @@ impl <Symbol> facts::Extendable<Wrap<Symbol>> for Program<Symbol>
         for wrap in iter.into_iter() {
             let wrap = facts::Wrap(
                 self.symbol_mapping.map(wrap.0), 
-                self.symbol_mapping.map(wrap.1)
+                self.symbol_mapping.map(wrap.1),
             );
             self.priors.wraps.insert(wrap);
         }

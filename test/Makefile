@@ -2,18 +2,21 @@
 MAKEFLAGS += --no-builtin-rules
 
 SRC:=$(wildcard *.rs)
-TARGETS:=$(patsubst %.rs, %, $(SRC))
+OUT_TARGETS := $(patsubst %.rs,%.out,$(SRC))
+ANALYSIS_TARGETS := $(patsubst %.rs,%.analysis,$(SRC))
+TARGETS := $(OUT_TARGETS) $(ANALYSIS_TARGETS)
 
 all: ${TARGETS}
-	@head -n100 */output/alarm.csv
 
 %.ll: %.rs
 	rustc --emit=llvm-ir $< -o $@
 
-%: %.ll
-	@mkdir -p $@/input $@/output
-	../build/constraint $< $@/input 2> $@/err > $@/out
-	souffle -F $@/input -D $@/output ../src/analysis.dl
+%.out: %.ll
+	cargo b -p llvm-lock-detection
+	opt-16 --load-pass-plugin=../target/debug/libllvm_lock_detection.so --passes=reentrant-lock-detection $<  | tr -cd '\11\12\15\40-\176' > $@
+
+%.analysis : %.out
+	awk '/END ANALYSIS/{exit} 1' $< > $@
 
 clean:
 	rm -rf *.ll ${TARGETS}

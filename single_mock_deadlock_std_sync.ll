@@ -20,6 +20,7 @@ target triple = "aarch64-unknown-linux-gnu"
 @alloc_91c7fa63c3cfeaa3c795652d5cf060e4 = private unnamed_addr constant <{ [12 x i8] }> <{ [12 x i8] c"invalid args" }>, align 1
 @alloc_560206a49c61adca6f3f0639a12632eb = private unnamed_addr constant <{ ptr, [8 x i8] }> <{ ptr @alloc_91c7fa63c3cfeaa3c795652d5cf060e4, [8 x i8] c"\0C\00\00\00\00\00\00\00" }>, align 8
 @alloc_0f3d7beb2672f296d76a42c95890bef9 = private unnamed_addr constant <{ [75 x i8] }> <{ [75 x i8] c"/rustc/90c541806f23a127002de5b4038be731ba1458ca/library/core/src/fmt/mod.rs" }>, align 1
+@alloc_ea676e06474b3ad20dc2b78cc1c22fa8 = private unnamed_addr constant <{ ptr, [16 x i8] }> <{ ptr @alloc_0f3d7beb2672f296d76a42c95890bef9, [16 x i8] c"K\00\00\00\00\00\00\00\9E\01\00\00\0D\00\00\00" }>, align 8
 @alloc_584d991c255ecc0b9a8eb25813e7c09e = private unnamed_addr constant <{ ptr, [16 x i8] }> <{ ptr @alloc_0f3d7beb2672f296d76a42c95890bef9, [16 x i8] c"K\00\00\00\00\00\00\00\91\01\00\00\0D\00\00\00" }>, align 8
 @alloc_513570631223a12912d85da2bec3b15a = private unnamed_addr constant <{}> zeroinitializer, align 8
 @alloc_96ab912d0054b46da785b206a96c9a45 = private unnamed_addr constant <{ [49 x i8] }> <{ [49 x i8] c"there is no such thing as an acquire-release load" }>, align 1
@@ -45,11 +46,16 @@ target triple = "aarch64-unknown-linux-gnu"
 @vtable.1 = private unnamed_addr constant <{ ptr, [16 x i8], ptr }> <{ ptr @"_ZN4core3ptr98drop_in_place$LT$std..sync..poison..PoisonError$LT$std..sync..mutex..MutexGuard$LT$i32$GT$$GT$$GT$17h915f88aaf572aaecE", [16 x i8] c"\10\00\00\00\00\00\00\00\08\00\00\00\00\00\00\00", ptr @"_ZN76_$LT$std..sync..poison..PoisonError$LT$T$GT$$u20$as$u20$core..fmt..Debug$GT$3fmt17he49b29e1e501cde0E" }>, align 8
 @alloc_8e2410b80645266732854088d21653bc = private unnamed_addr constant <{ [11 x i8] }> <{ [11 x i8] c"PoisonError" }>, align 1
 @alloc_102161e659cc4499244375503e57572b = private unnamed_addr constant <{ [39 x i8] }> <{ [39 x i8] c"./test/single_mock_deadlock_std_sync.rs" }>, align 1
-@alloc_ed830460a65e56e6ddbd50171d84d861 = private unnamed_addr constant <{ ptr, [16 x i8] }> <{ ptr @alloc_102161e659cc4499244375503e57572b, [16 x i8] c"'\00\00\00\00\00\00\00\08\00\00\00#\00\00\00" }>, align 8
-@alloc_f47b481bc687353b3def0fa4a1c27c7c = private unnamed_addr constant <{ ptr, [16 x i8] }> <{ ptr @alloc_102161e659cc4499244375503e57572b, [16 x i8] c"'\00\00\00\00\00\00\00\09\00\00\00\05\00\00\00" }>, align 8
+@alloc_7deb76c3554bd0594b431f3b05e87e4b = private unnamed_addr constant <{ ptr, [16 x i8] }> <{ ptr @alloc_102161e659cc4499244375503e57572b, [16 x i8] c"'\00\00\00\00\00\00\00\07\00\00\00#\00\00\00" }>, align 8
+@alloc_92958af3c50ae6a5a2e5f85e12c779e2 = private unnamed_addr constant <{ ptr, [16 x i8] }> <{ ptr @alloc_102161e659cc4499244375503e57572b, [16 x i8] c"'\00\00\00\00\00\00\00\08\00\00\00\05\00\00\00" }>, align 8
 @str.2 = internal constant [28 x i8] c"attempt to add with overflow"
-@alloc_9e9a054a785bbf16482019702a26198c = private unnamed_addr constant <{ ptr, [16 x i8] }> <{ ptr @alloc_102161e659cc4499244375503e57572b, [16 x i8] c"'\00\00\00\00\00\00\00\0A\00\00\00&\00\00\00" }>, align 8
-@alloc_3d8b458203e40e7eb08ad47822bb06ec = private unnamed_addr constant <{ ptr, [16 x i8] }> <{ ptr @alloc_102161e659cc4499244375503e57572b, [16 x i8] c"'\00\00\00\00\00\00\00\0B\00\00\00\05\00\00\00" }>, align 8
+@alloc_ea497d8b8a597918be23bdaa96fae024 = private unnamed_addr constant <{ [16 x i8] }> <{ [16 x i8] c"Here is fine x: " }>, align 1
+@alloc_49a1e817e911805af64bbc7efb390101 = private unnamed_addr constant <{ [1 x i8] }> <{ [1 x i8] c"\0A" }>, align 1
+@alloc_57f302b174bab2721e64f70b64e905fe = private unnamed_addr constant <{ ptr, [8 x i8], ptr, [8 x i8] }> <{ ptr @alloc_ea497d8b8a597918be23bdaa96fae024, [8 x i8] c"\10\00\00\00\00\00\00\00", ptr @alloc_49a1e817e911805af64bbc7efb390101, [8 x i8] c"\01\00\00\00\00\00\00\00" }>, align 8
+@alloc_ff2a8d5325a151d35423e482542a31b0 = private unnamed_addr constant <{ ptr, [16 x i8] }> <{ ptr @alloc_102161e659cc4499244375503e57572b, [16 x i8] c"'\00\00\00\00\00\00\00\0B\00\00\00&\00\00\00" }>, align 8
+@alloc_d806bfd32983fd2f95e9b229bb2d3957 = private unnamed_addr constant <{ ptr, [16 x i8] }> <{ ptr @alloc_102161e659cc4499244375503e57572b, [16 x i8] c"'\00\00\00\00\00\00\00\0C\00\00\00\05\00\00\00" }>, align 8
+@alloc_cf9ace3e8bee744763c2b5f4a90b94d8 = private unnamed_addr constant <{ [25 x i8] }> <{ [25 x i8] c"Should never get here x: " }>, align 1
+@alloc_ab7409cc97216e44b633423d958004e8 = private unnamed_addr constant <{ ptr, [8 x i8], ptr, [8 x i8] }> <{ ptr @alloc_cf9ace3e8bee744763c2b5f4a90b94d8, [8 x i8] c"\19\00\00\00\00\00\00\00", ptr @alloc_49a1e817e911805af64bbc7efb390101, [8 x i8] c"\01\00\00\00\00\00\00\00" }>, align 8
 
 ; std::sys_common::backtrace::__rust_begin_short_backtrace
 ; Function Attrs: noinline nonlazybind uwtable
@@ -422,6 +428,79 @@ bb3:                                              ; preds = %bb1, %bb2
   ret i1 %5
 }
 
+; core::fmt::ArgumentV1::new_display
+; Function Attrs: inlinehint nonlazybind uwtable
+define internal { ptr, ptr } @_ZN4core3fmt10ArgumentV111new_display17h3deff3b12990f09fE(ptr align 4 %x) unnamed_addr #2 {
+start:
+  %0 = alloca { ptr, ptr }, align 8
+  store ptr %x, ptr %0, align 8
+  %1 = getelementptr inbounds { ptr, ptr }, ptr %0, i32 0, i32 1
+  store ptr @"_ZN4core3fmt3num3imp52_$LT$impl$u20$core..fmt..Display$u20$for$u20$i32$GT$3fmt17h2d0a9332273b8593E", ptr %1, align 8
+  %2 = getelementptr inbounds { ptr, ptr }, ptr %0, i32 0, i32 0
+  %3 = load ptr, ptr %2, align 8, !nonnull !4, !align !8, !noundef !4
+  %4 = getelementptr inbounds { ptr, ptr }, ptr %0, i32 0, i32 1
+  %5 = load ptr, ptr %4, align 8, !nonnull !4, !noundef !4
+  %6 = insertvalue { ptr, ptr } poison, ptr %3, 0
+  %7 = insertvalue { ptr, ptr } %6, ptr %5, 1
+  ret { ptr, ptr } %7
+}
+
+; core::fmt::Arguments::new_v1
+; Function Attrs: inlinehint nonlazybind uwtable
+define internal void @_ZN4core3fmt9Arguments6new_v117h597ad998c92c3e2dE(ptr sret(%"core::fmt::Arguments<'_>") %0, ptr align 8 %pieces.0, i64 %pieces.1, ptr align 8 %args.0, i64 %args.1) unnamed_addr #2 {
+start:
+  %_14 = alloca { ptr, i64 }, align 8
+  %_12 = alloca %"core::fmt::Arguments<'_>", align 8
+  %_3 = alloca i8, align 1
+  %_4 = icmp ult i64 %pieces.1, %args.1
+  br i1 %_4, label %bb1, label %bb2
+
+bb2:                                              ; preds = %start
+  %_9 = add i64 %args.1, 1
+  %_7 = icmp ugt i64 %pieces.1, %_9
+  %1 = zext i1 %_7 to i8
+  store i8 %1, ptr %_3, align 1
+  br label %bb3
+
+bb1:                                              ; preds = %start
+  store i8 1, ptr %_3, align 1
+  br label %bb3
+
+bb3:                                              ; preds = %bb2, %bb1
+  %2 = load i8, ptr %_3, align 1, !range !6, !noundef !4
+  %3 = trunc i8 %2 to i1
+  br i1 %3, label %bb4, label %bb6
+
+bb6:                                              ; preds = %bb3
+  store ptr null, ptr %_14, align 8
+  %4 = getelementptr inbounds %"core::fmt::Arguments<'_>", ptr %0, i32 0, i32 1
+  %5 = getelementptr inbounds { ptr, i64 }, ptr %4, i32 0, i32 0
+  store ptr %pieces.0, ptr %5, align 8
+  %6 = getelementptr inbounds { ptr, i64 }, ptr %4, i32 0, i32 1
+  store i64 %pieces.1, ptr %6, align 8
+  %7 = getelementptr inbounds { ptr, i64 }, ptr %_14, i32 0, i32 0
+  %8 = load ptr, ptr %7, align 8, !align !9, !noundef !4
+  %9 = getelementptr inbounds { ptr, i64 }, ptr %_14, i32 0, i32 1
+  %10 = load i64, ptr %9, align 8
+  %11 = getelementptr inbounds { ptr, i64 }, ptr %0, i32 0, i32 0
+  store ptr %8, ptr %11, align 8
+  %12 = getelementptr inbounds { ptr, i64 }, ptr %0, i32 0, i32 1
+  store i64 %10, ptr %12, align 8
+  %13 = getelementptr inbounds %"core::fmt::Arguments<'_>", ptr %0, i32 0, i32 2
+  %14 = getelementptr inbounds { ptr, i64 }, ptr %13, i32 0, i32 0
+  store ptr %args.0, ptr %14, align 8
+  %15 = getelementptr inbounds { ptr, i64 }, ptr %13, i32 0, i32 1
+  store i64 %args.1, ptr %15, align 8
+  ret void
+
+bb4:                                              ; preds = %bb3
+; call core::fmt::Arguments::new_const
+  call void @_ZN4core3fmt9Arguments9new_const17hd9a06c56282fbf58E(ptr sret(%"core::fmt::Arguments<'_>") %_12, ptr align 8 @alloc_560206a49c61adca6f3f0639a12632eb, i64 1)
+; call core::panicking::panic_fmt
+  call void @_ZN4core9panicking9panic_fmt17h9ed84968eba0b8baE(ptr %_12, ptr align 8 @alloc_ea676e06474b3ad20dc2b78cc1c22fa8) #11
+  unreachable
+}
+
 ; core::fmt::Arguments::new_const
 ; Function Attrs: inlinehint nonlazybind uwtable
 define internal void @_ZN4core3fmt9Arguments9new_const17hd9a06c56282fbf58E(ptr sret(%"core::fmt::Arguments<'_>") %0, ptr align 8 %pieces.0, i64 %pieces.1) unnamed_addr #2 {
@@ -439,7 +518,7 @@ bb3:                                              ; preds = %start
   %3 = getelementptr inbounds { ptr, i64 }, ptr %1, i32 0, i32 1
   store i64 %pieces.1, ptr %3, align 8
   %4 = getelementptr inbounds { ptr, i64 }, ptr %_7, i32 0, i32 0
-  %5 = load ptr, ptr %4, align 8, !align !8, !noundef !4
+  %5 = load ptr, ptr %4, align 8, !align !9, !noundef !4
   %6 = getelementptr inbounds { ptr, i64 }, ptr %_7, i32 0, i32 1
   %7 = load i64, ptr %6, align 8
   %8 = getelementptr inbounds { ptr, i64 }, ptr %0, i32 0, i32 0
@@ -550,7 +629,7 @@ start:
   %1 = alloca i64, align 8
   %order = alloca i8, align 1
   store i8 %0, ptr %order, align 1
-  %2 = load i8, ptr %order, align 1, !range !9, !noundef !4
+  %2 = load i8, ptr %order, align 1, !range !10, !noundef !4
   %_3 = zext i8 %2 to i64
   switch i64 %_3, label %bb2 [
     i64 0, label %bb3
@@ -606,7 +685,7 @@ start:
   %1 = alloca i8, align 1
   %order = alloca i8, align 1
   store i8 %0, ptr %order, align 1
-  %2 = load i8, ptr %order, align 1, !range !9, !noundef !4
+  %2 = load i8, ptr %order, align 1, !range !10, !noundef !4
   %_3 = zext i8 %2 to i64
   switch i64 %_3, label %bb2 [
     i64 0, label %bb3
@@ -661,7 +740,7 @@ start:
   %_6 = alloca %"core::fmt::Arguments<'_>", align 8
   %order = alloca i8, align 1
   store i8 %0, ptr %order, align 1
-  %1 = load i8, ptr %order, align 1, !range !9, !noundef !4
+  %1 = load i8, ptr %order, align 1, !range !10, !noundef !4
   %_4 = zext i8 %1 to i64
   switch i64 %_4, label %bb2 [
     i64 0, label %bb3
@@ -716,7 +795,7 @@ start:
   store i8 %success, ptr %_9, align 1
   %1 = getelementptr inbounds { i8, i8 }, ptr %_9, i32 0, i32 1
   store i8 %failure, ptr %1, align 1
-  %2 = load i8, ptr %_9, align 1, !range !9, !noundef !4
+  %2 = load i8, ptr %_9, align 1, !range !10, !noundef !4
   %_16 = zext i8 %2 to i64
   switch i64 %_16, label %bb7 [
     i64 0, label %bb1
@@ -731,7 +810,7 @@ bb7:                                              ; preds = %start
 
 bb1:                                              ; preds = %start
   %3 = getelementptr inbounds { i8, i8 }, ptr %_9, i32 0, i32 1
-  %4 = load i8, ptr %3, align 1, !range !9, !noundef !4
+  %4 = load i8, ptr %3, align 1, !range !10, !noundef !4
   %_10 = zext i8 %4 to i64
   switch i64 %_10, label %bb2 [
     i64 0, label %bb9
@@ -741,7 +820,7 @@ bb1:                                              ; preds = %start
 
 bb3:                                              ; preds = %start
   %5 = getelementptr inbounds { i8, i8 }, ptr %_9, i32 0, i32 1
-  %6 = load i8, ptr %5, align 1, !range !9, !noundef !4
+  %6 = load i8, ptr %5, align 1, !range !10, !noundef !4
   %_11 = zext i8 %6 to i64
   switch i64 %_11, label %bb2 [
     i64 0, label %bb15
@@ -751,7 +830,7 @@ bb3:                                              ; preds = %start
 
 bb4:                                              ; preds = %start
   %7 = getelementptr inbounds { i8, i8 }, ptr %_9, i32 0, i32 1
-  %8 = load i8, ptr %7, align 1, !range !9, !noundef !4
+  %8 = load i8, ptr %7, align 1, !range !10, !noundef !4
   %_12 = zext i8 %8 to i64
   switch i64 %_12, label %bb2 [
     i64 0, label %bb12
@@ -761,7 +840,7 @@ bb4:                                              ; preds = %start
 
 bb5:                                              ; preds = %start
   %9 = getelementptr inbounds { i8, i8 }, ptr %_9, i32 0, i32 1
-  %10 = load i8, ptr %9, align 1, !range !9, !noundef !4
+  %10 = load i8, ptr %9, align 1, !range !10, !noundef !4
   %_13 = zext i8 %10 to i64
   switch i64 %_13, label %bb2 [
     i64 0, label %bb18
@@ -771,7 +850,7 @@ bb5:                                              ; preds = %start
 
 bb6:                                              ; preds = %start
   %11 = getelementptr inbounds { i8, i8 }, ptr %_9, i32 0, i32 1
-  %12 = load i8, ptr %11, align 1, !range !9, !noundef !4
+  %12 = load i8, ptr %11, align 1, !range !10, !noundef !4
   %_14 = zext i8 %12 to i64
   switch i64 %_14, label %bb2 [
     i64 0, label %bb21
@@ -781,7 +860,7 @@ bb6:                                              ; preds = %start
 
 bb2:                                              ; preds = %bb1, %bb3, %bb4, %bb5, %bb6
   %13 = getelementptr inbounds { i8, i8 }, ptr %_9, i32 0, i32 1
-  %14 = load i8, ptr %13, align 1, !range !9, !noundef !4
+  %14 = load i8, ptr %13, align 1, !range !10, !noundef !4
   %_15 = zext i8 %14 to i64
   %15 = icmp eq i64 %_15, 1
   br i1 %15, label %bb8, label %bb24
@@ -985,7 +1064,7 @@ define internal { ptr, i8 } @"_ZN4core6result19Result$LT$T$C$E$GT$6unwrap17h35ef
 start:
   %1 = alloca { ptr, i32 }, align 8
   %e = alloca { ptr, i8 }, align 8
-  %_2 = load i64, ptr %self, align 8, !range !10, !noundef !4
+  %_2 = load i64, ptr %self, align 8, !range !11, !noundef !4
   %2 = icmp eq i64 %_2, 0
   br i1 %2, label %bb3, label %bb1
 
@@ -1105,6 +1184,15 @@ bb2:                                              ; preds = %bb3, %bb4
   ret void
 }
 
+; <std::sync::mutex::MutexGuard<T> as core::ops::deref::Deref>::deref
+; Function Attrs: nonlazybind uwtable
+define internal align 4 ptr @"_ZN81_$LT$std..sync..mutex..MutexGuard$LT$T$GT$$u20$as$u20$core..ops..deref..Deref$GT$5deref17h284118b481ff7cbbE"(ptr align 8 %self) unnamed_addr #1 {
+start:
+  %_4 = load ptr, ptr %self, align 8, !nonnull !4, !align !7, !noundef !4
+  %self1 = getelementptr inbounds %"std::sync::mutex::Mutex<i32>", ptr %_4, i32 0, i32 3
+  ret ptr %self1
+}
+
 ; <std::sync::mutex::MutexGuard<T> as core::ops::deref::DerefMut>::deref_mut
 ; Function Attrs: nonlazybind uwtable
 define internal align 4 ptr @"_ZN84_$LT$std..sync..mutex..MutexGuard$LT$T$GT$$u20$as$u20$core..ops..deref..DerefMut$GT$9deref_mut17h263a595b4b9c642cE"(ptr align 8 %self) unnamed_addr #1 {
@@ -1119,28 +1207,32 @@ start:
 define internal void @_ZN29single_mock_deadlock_std_sync4main17he9e53c957c22df1fE() unnamed_addr #1 personality ptr @rust_eh_personality {
 start:
   %0 = alloca { ptr, i32 }, align 8
-  %_10 = alloca %"core::result::Result<std::sync::mutex::MutexGuard<'_, i32>, std::sync::poison::PoisonError<std::sync::mutex::MutexGuard<'_, i32>>>", align 8
+  %_29 = alloca [1 x { ptr, ptr }], align 8
+  %_25 = alloca %"core::fmt::Arguments<'_>", align 8
+  %_19 = alloca %"core::result::Result<std::sync::mutex::MutexGuard<'_, i32>, std::sync::poison::PoisonError<std::sync::mutex::MutexGuard<'_, i32>>>", align 8
   %deadlock = alloca { ptr, i8 }, align 8
-  %_4 = alloca %"core::result::Result<std::sync::mutex::MutexGuard<'_, i32>, std::sync::poison::PoisonError<std::sync::mutex::MutexGuard<'_, i32>>>", align 8
+  %_13 = alloca [1 x { ptr, ptr }], align 8
+  %_9 = alloca %"core::fmt::Arguments<'_>", align 8
+  %_3 = alloca %"core::result::Result<std::sync::mutex::MutexGuard<'_, i32>, std::sync::poison::PoisonError<std::sync::mutex::MutexGuard<'_, i32>>>", align 8
   %guard = alloca { ptr, i8 }, align 8
   %safe_x = alloca %"std::sync::mutex::Mutex<i32>", align 4
 ; call std::sync::mutex::Mutex<T>::new
   call void @"_ZN3std4sync5mutex14Mutex$LT$T$GT$3new17h486fe7b43ded0ff3E"(ptr sret(%"std::sync::mutex::Mutex<i32>") %safe_x, i32 64)
 ; call std::sync::mutex::Mutex<T>::lock
-  call void @"_ZN3std4sync5mutex14Mutex$LT$T$GT$4lock17h8dad7da268b6d1f1E"(ptr sret(%"core::result::Result<std::sync::mutex::MutexGuard<'_, i32>, std::sync::poison::PoisonError<std::sync::mutex::MutexGuard<'_, i32>>>") %_4, ptr align 4 %safe_x)
+  call void @"_ZN3std4sync5mutex14Mutex$LT$T$GT$4lock17h8dad7da268b6d1f1E"(ptr sret(%"core::result::Result<std::sync::mutex::MutexGuard<'_, i32>, std::sync::poison::PoisonError<std::sync::mutex::MutexGuard<'_, i32>>>") %_3, ptr align 4 %safe_x)
 ; call core::result::Result<T,E>::unwrap
-  %1 = call { ptr, i8 } @"_ZN4core6result19Result$LT$T$C$E$GT$6unwrap17h35ef892cbc8a9b5bE"(ptr %_4, ptr align 8 @alloc_ed830460a65e56e6ddbd50171d84d861)
+  %1 = call { ptr, i8 } @"_ZN4core6result19Result$LT$T$C$E$GT$6unwrap17h35ef892cbc8a9b5bE"(ptr %_3, ptr align 8 @alloc_7deb76c3554bd0594b431f3b05e87e4b)
   store { ptr, i8 } %1, ptr %guard, align 8
 ; invoke <std::sync::mutex::MutexGuard<T> as core::ops::deref::DerefMut>::deref_mut
-  %_6 = invoke align 4 ptr @"_ZN84_$LT$std..sync..mutex..MutexGuard$LT$T$GT$$u20$as$u20$core..ops..deref..DerefMut$GT$9deref_mut17h263a595b4b9c642cE"(ptr align 8 %guard)
+  %_5 = invoke align 4 ptr @"_ZN84_$LT$std..sync..mutex..MutexGuard$LT$T$GT$$u20$as$u20$core..ops..deref..DerefMut$GT$9deref_mut17h263a595b4b9c642cE"(ptr align 8 %guard)
           to label %bb4 unwind label %cleanup
 
-bb13:                                             ; preds = %bb12, %cleanup
+bb21:                                             ; preds = %bb20, %cleanup
 ; invoke core::ptr::drop_in_place<std::sync::mutex::MutexGuard<i32>>
   invoke void @"_ZN4core3ptr60drop_in_place$LT$std..sync..mutex..MutexGuard$LT$i32$GT$$GT$17hfb1ed5940b1f2625E"(ptr %guard) #12
-          to label %bb14 unwind label %terminate
+          to label %bb22 unwind label %terminate
 
-cleanup:                                          ; preds = %bb9, %bb6, %bb5, %panic, %start
+cleanup:                                          ; preds = %bb17, %bb10, %bb9, %bb8, %bb7, %bb6, %bb5, %panic, %start
   %2 = landingpad { ptr, i32 }
           cleanup
   %3 = extractvalue { ptr, i32 } %2, 0
@@ -1149,97 +1241,151 @@ cleanup:                                          ; preds = %bb9, %bb6, %bb5, %p
   store ptr %3, ptr %5, align 8
   %6 = getelementptr inbounds { ptr, i32 }, ptr %0, i32 0, i32 1
   store i32 %4, ptr %6, align 8
-  br label %bb13
+  br label %bb21
 
 bb4:                                              ; preds = %start
-  %7 = load i32, ptr %_6, align 4, !noundef !4
+  %7 = load i32, ptr %_5, align 4, !noundef !4
   %8 = call { i32, i1 } @llvm.sadd.with.overflow.i32(i32 %7, i32 1)
-  %_8.0 = extractvalue { i32, i1 } %8, 0
-  %_8.1 = extractvalue { i32, i1 } %8, 1
-  %9 = call i1 @llvm.expect.i1(i1 %_8.1, i1 false)
+  %_7.0 = extractvalue { i32, i1 } %8, 0
+  %_7.1 = extractvalue { i32, i1 } %8, 1
+  %9 = call i1 @llvm.expect.i1(i1 %_7.1, i1 false)
   br i1 %9, label %panic, label %bb5
 
 bb5:                                              ; preds = %bb4
-  store i32 %_8.0, ptr %_6, align 4
-; invoke std::sync::mutex::Mutex<T>::lock
-  invoke void @"_ZN3std4sync5mutex14Mutex$LT$T$GT$4lock17h8dad7da268b6d1f1E"(ptr sret(%"core::result::Result<std::sync::mutex::MutexGuard<'_, i32>, std::sync::poison::PoisonError<std::sync::mutex::MutexGuard<'_, i32>>>") %_10, ptr align 4 %safe_x)
+  store i32 %_7.0, ptr %_5, align 4
+; invoke <std::sync::mutex::MutexGuard<T> as core::ops::deref::Deref>::deref
+  %_16 = invoke align 4 ptr @"_ZN81_$LT$std..sync..mutex..MutexGuard$LT$T$GT$$u20$as$u20$core..ops..deref..Deref$GT$5deref17h284118b481ff7cbbE"(ptr align 8 %guard)
           to label %bb6 unwind label %cleanup
 
 panic:                                            ; preds = %bb4
 ; invoke core::panicking::panic
-  invoke void @_ZN4core9panicking5panic17h39466a6143e26d57E(ptr align 1 @str.2, i64 28, ptr align 8 @alloc_f47b481bc687353b3def0fa4a1c27c7c) #11
+  invoke void @_ZN4core9panicking5panic17h39466a6143e26d57E(ptr align 1 @str.2, i64 28, ptr align 8 @alloc_92958af3c50ae6a5a2e5f85e12c779e2) #11
           to label %unreachable unwind label %cleanup
 
 unreachable:                                      ; preds = %panic2, %panic
   unreachable
 
 bb6:                                              ; preds = %bb5
-; invoke core::result::Result<T,E>::unwrap
-  %10 = invoke { ptr, i8 } @"_ZN4core6result19Result$LT$T$C$E$GT$6unwrap17h35ef892cbc8a9b5bE"(ptr %_10, ptr align 8 @alloc_9e9a054a785bbf16482019702a26198c)
+; invoke core::fmt::ArgumentV1::new_display
+  %10 = invoke { ptr, ptr } @_ZN4core3fmt10ArgumentV111new_display17h3deff3b12990f09fE(ptr align 4 %_16)
           to label %bb7 unwind label %cleanup
 
 bb7:                                              ; preds = %bb6
-  store { ptr, i8 } %10, ptr %deadlock, align 8
-; invoke <std::sync::mutex::MutexGuard<T> as core::ops::deref::DerefMut>::deref_mut
-  %_12 = invoke align 4 ptr @"_ZN84_$LT$std..sync..mutex..MutexGuard$LT$T$GT$$u20$as$u20$core..ops..deref..DerefMut$GT$9deref_mut17h263a595b4b9c642cE"(ptr align 8 %deadlock)
-          to label %bb8 unwind label %cleanup1
-
-bb12:                                             ; preds = %cleanup1
-; invoke core::ptr::drop_in_place<std::sync::mutex::MutexGuard<i32>>
-  invoke void @"_ZN4core3ptr60drop_in_place$LT$std..sync..mutex..MutexGuard$LT$i32$GT$$GT$17hfb1ed5940b1f2625E"(ptr %deadlock) #12
-          to label %bb13 unwind label %terminate
-
-cleanup1:                                         ; preds = %panic2, %bb7
-  %11 = landingpad { ptr, i32 }
-          cleanup
-  %12 = extractvalue { ptr, i32 } %11, 0
-  %13 = extractvalue { ptr, i32 } %11, 1
-  %14 = getelementptr inbounds { ptr, i32 }, ptr %0, i32 0, i32 0
-  store ptr %12, ptr %14, align 8
-  %15 = getelementptr inbounds { ptr, i32 }, ptr %0, i32 0, i32 1
-  store i32 %13, ptr %15, align 8
-  br label %bb12
+  %_14.0 = extractvalue { ptr, ptr } %10, 0
+  %_14.1 = extractvalue { ptr, ptr } %10, 1
+  %11 = getelementptr inbounds [1 x { ptr, ptr }], ptr %_13, i64 0, i64 0
+  %12 = getelementptr inbounds { ptr, ptr }, ptr %11, i32 0, i32 0
+  store ptr %_14.0, ptr %12, align 8
+  %13 = getelementptr inbounds { ptr, ptr }, ptr %11, i32 0, i32 1
+  store ptr %_14.1, ptr %13, align 8
+; invoke core::fmt::Arguments::new_v1
+  invoke void @_ZN4core3fmt9Arguments6new_v117h597ad998c92c3e2dE(ptr sret(%"core::fmt::Arguments<'_>") %_9, ptr align 8 @alloc_57f302b174bab2721e64f70b64e905fe, i64 2, ptr align 8 %_13, i64 1)
+          to label %bb8 unwind label %cleanup
 
 bb8:                                              ; preds = %bb7
-  %16 = load i32, ptr %_12, align 4, !noundef !4
-  %17 = call { i32, i1 } @llvm.sadd.with.overflow.i32(i32 %16, i32 1)
-  %_14.0 = extractvalue { i32, i1 } %17, 0
-  %_14.1 = extractvalue { i32, i1 } %17, 1
-  %18 = call i1 @llvm.expect.i1(i1 %_14.1, i1 false)
-  br i1 %18, label %panic2, label %bb9
+; invoke std::io::stdio::_print
+  invoke void @_ZN3std2io5stdio6_print17he1fd6c9db1efbff1E(ptr %_9)
+          to label %bb9 unwind label %cleanup
 
 bb9:                                              ; preds = %bb8
-  store i32 %_14.0, ptr %_12, align 4
-; invoke core::ptr::drop_in_place<std::sync::mutex::MutexGuard<i32>>
-  invoke void @"_ZN4core3ptr60drop_in_place$LT$std..sync..mutex..MutexGuard$LT$i32$GT$$GT$17hfb1ed5940b1f2625E"(ptr %deadlock)
+; invoke std::sync::mutex::Mutex<T>::lock
+  invoke void @"_ZN3std4sync5mutex14Mutex$LT$T$GT$4lock17h8dad7da268b6d1f1E"(ptr sret(%"core::result::Result<std::sync::mutex::MutexGuard<'_, i32>, std::sync::poison::PoisonError<std::sync::mutex::MutexGuard<'_, i32>>>") %_19, ptr align 4 %safe_x)
           to label %bb10 unwind label %cleanup
 
-panic2:                                           ; preds = %bb8
+bb10:                                             ; preds = %bb9
+; invoke core::result::Result<T,E>::unwrap
+  %14 = invoke { ptr, i8 } @"_ZN4core6result19Result$LT$T$C$E$GT$6unwrap17h35ef892cbc8a9b5bE"(ptr %_19, ptr align 8 @alloc_ff2a8d5325a151d35423e482542a31b0)
+          to label %bb11 unwind label %cleanup
+
+bb11:                                             ; preds = %bb10
+  store { ptr, i8 } %14, ptr %deadlock, align 8
+; invoke <std::sync::mutex::MutexGuard<T> as core::ops::deref::DerefMut>::deref_mut
+  %_21 = invoke align 4 ptr @"_ZN84_$LT$std..sync..mutex..MutexGuard$LT$T$GT$$u20$as$u20$core..ops..deref..DerefMut$GT$9deref_mut17h263a595b4b9c642cE"(ptr align 8 %deadlock)
+          to label %bb12 unwind label %cleanup1
+
+bb20:                                             ; preds = %cleanup1
+; invoke core::ptr::drop_in_place<std::sync::mutex::MutexGuard<i32>>
+  invoke void @"_ZN4core3ptr60drop_in_place$LT$std..sync..mutex..MutexGuard$LT$i32$GT$$GT$17hfb1ed5940b1f2625E"(ptr %deadlock) #12
+          to label %bb21 unwind label %terminate
+
+cleanup1:                                         ; preds = %bb16, %bb15, %bb14, %bb13, %panic2, %bb11
+  %15 = landingpad { ptr, i32 }
+          cleanup
+  %16 = extractvalue { ptr, i32 } %15, 0
+  %17 = extractvalue { ptr, i32 } %15, 1
+  %18 = getelementptr inbounds { ptr, i32 }, ptr %0, i32 0, i32 0
+  store ptr %16, ptr %18, align 8
+  %19 = getelementptr inbounds { ptr, i32 }, ptr %0, i32 0, i32 1
+  store i32 %17, ptr %19, align 8
+  br label %bb20
+
+bb12:                                             ; preds = %bb11
+  %20 = load i32, ptr %_21, align 4, !noundef !4
+  %21 = call { i32, i1 } @llvm.sadd.with.overflow.i32(i32 %20, i32 1)
+  %_23.0 = extractvalue { i32, i1 } %21, 0
+  %_23.1 = extractvalue { i32, i1 } %21, 1
+  %22 = call i1 @llvm.expect.i1(i1 %_23.1, i1 false)
+  br i1 %22, label %panic2, label %bb13
+
+bb13:                                             ; preds = %bb12
+  store i32 %_23.0, ptr %_21, align 4
+; invoke <std::sync::mutex::MutexGuard<T> as core::ops::deref::Deref>::deref
+  %_32 = invoke align 4 ptr @"_ZN81_$LT$std..sync..mutex..MutexGuard$LT$T$GT$$u20$as$u20$core..ops..deref..Deref$GT$5deref17h284118b481ff7cbbE"(ptr align 8 %deadlock)
+          to label %bb14 unwind label %cleanup1
+
+panic2:                                           ; preds = %bb12
 ; invoke core::panicking::panic
-  invoke void @_ZN4core9panicking5panic17h39466a6143e26d57E(ptr align 1 @str.2, i64 28, ptr align 8 @alloc_3d8b458203e40e7eb08ad47822bb06ec) #11
+  invoke void @_ZN4core9panicking5panic17h39466a6143e26d57E(ptr align 1 @str.2, i64 28, ptr align 8 @alloc_d806bfd32983fd2f95e9b229bb2d3957) #11
           to label %unreachable unwind label %cleanup1
 
-terminate:                                        ; preds = %bb13, %bb12
-  %19 = landingpad { ptr, i32 }
+bb14:                                             ; preds = %bb13
+; invoke core::fmt::ArgumentV1::new_display
+  %23 = invoke { ptr, ptr } @_ZN4core3fmt10ArgumentV111new_display17h3deff3b12990f09fE(ptr align 4 %_32)
+          to label %bb15 unwind label %cleanup1
+
+bb15:                                             ; preds = %bb14
+  %_30.0 = extractvalue { ptr, ptr } %23, 0
+  %_30.1 = extractvalue { ptr, ptr } %23, 1
+  %24 = getelementptr inbounds [1 x { ptr, ptr }], ptr %_29, i64 0, i64 0
+  %25 = getelementptr inbounds { ptr, ptr }, ptr %24, i32 0, i32 0
+  store ptr %_30.0, ptr %25, align 8
+  %26 = getelementptr inbounds { ptr, ptr }, ptr %24, i32 0, i32 1
+  store ptr %_30.1, ptr %26, align 8
+; invoke core::fmt::Arguments::new_v1
+  invoke void @_ZN4core3fmt9Arguments6new_v117h597ad998c92c3e2dE(ptr sret(%"core::fmt::Arguments<'_>") %_25, ptr align 8 @alloc_ab7409cc97216e44b633423d958004e8, i64 2, ptr align 8 %_29, i64 1)
+          to label %bb16 unwind label %cleanup1
+
+bb16:                                             ; preds = %bb15
+; invoke std::io::stdio::_print
+  invoke void @_ZN3std2io5stdio6_print17he1fd6c9db1efbff1E(ptr %_25)
+          to label %bb17 unwind label %cleanup1
+
+bb17:                                             ; preds = %bb16
+; invoke core::ptr::drop_in_place<std::sync::mutex::MutexGuard<i32>>
+  invoke void @"_ZN4core3ptr60drop_in_place$LT$std..sync..mutex..MutexGuard$LT$i32$GT$$GT$17hfb1ed5940b1f2625E"(ptr %deadlock)
+          to label %bb18 unwind label %cleanup
+
+terminate:                                        ; preds = %bb21, %bb20
+  %27 = landingpad { ptr, i32 }
           cleanup
-  %20 = extractvalue { ptr, i32 } %19, 0
-  %21 = extractvalue { ptr, i32 } %19, 1
+  %28 = extractvalue { ptr, i32 } %27, 0
+  %29 = extractvalue { ptr, i32 } %27, 1
 ; call core::panicking::panic_cannot_unwind
   call void @_ZN4core9panicking19panic_cannot_unwind17h0f19cb8e77aed642E() #13
   unreachable
 
-bb10:                                             ; preds = %bb9
+bb18:                                             ; preds = %bb17
 ; call core::ptr::drop_in_place<std::sync::mutex::MutexGuard<i32>>
   call void @"_ZN4core3ptr60drop_in_place$LT$std..sync..mutex..MutexGuard$LT$i32$GT$$GT$17hfb1ed5940b1f2625E"(ptr %guard)
   ret void
 
-bb14:                                             ; preds = %bb13
-  %22 = load ptr, ptr %0, align 8, !noundef !4
-  %23 = getelementptr inbounds { ptr, i32 }, ptr %0, i32 0, i32 1
-  %24 = load i32, ptr %23, align 8, !noundef !4
-  %25 = insertvalue { ptr, i32 } poison, ptr %22, 0
-  %26 = insertvalue { ptr, i32 } %25, i32 %24, 1
-  resume { ptr, i32 } %26
+bb22:                                             ; preds = %bb21
+  %30 = load ptr, ptr %0, align 8, !noundef !4
+  %31 = getelementptr inbounds { ptr, i32 }, ptr %0, i32 0, i32 1
+  %32 = load i32, ptr %31, align 8, !noundef !4
+  %33 = insertvalue { ptr, i32 } poison, ptr %30, 0
+  %34 = insertvalue { ptr, i32 } %33, i32 %32, 1
+  resume { ptr, i32 } %34
 }
 
 ; std::rt::lang_start_internal
@@ -1256,6 +1402,10 @@ declare void @llvm.memcpy.p0.p0.i64(ptr noalias nocapture writeonly, ptr noalias
 ; std::panicking::panic_count::is_zero_slow_path
 ; Function Attrs: cold noinline nonlazybind uwtable
 declare zeroext i1 @_ZN3std9panicking11panic_count17is_zero_slow_path17h1811f0c0aba3e0a6E() unnamed_addr #5
+
+; core::fmt::num::imp::<impl core::fmt::Display for i32>::fmt
+; Function Attrs: nonlazybind uwtable
+declare zeroext i1 @"_ZN4core3fmt3num3imp52_$LT$impl$u20$core..fmt..Display$u20$for$u20$i32$GT$3fmt17h2d0a9332273b8593E"(ptr align 4, ptr align 8) unnamed_addr #1
 
 ; core::panicking::panic_fmt
 ; Function Attrs: cold noinline noreturn nonlazybind uwtable
@@ -1294,6 +1444,10 @@ declare i1 @llvm.expect.i1(i1, i1) #9
 ; Function Attrs: cold noinline noreturn nonlazybind uwtable
 declare void @_ZN4core9panicking5panic17h39466a6143e26d57E(ptr align 1, i64, ptr align 8) unnamed_addr #6
 
+; std::io::stdio::_print
+; Function Attrs: nonlazybind uwtable
+declare void @_ZN3std2io5stdio6_print17he1fd6c9db1efbff1E(ptr) unnamed_addr #1
+
 ; Function Attrs: nonlazybind
 define i32 @main(i32 %0, ptr %1) unnamed_addr #10 {
 top:
@@ -1324,11 +1478,12 @@ attributes #13 = { noinline noreturn nounwind }
 !0 = !{i32 8, !"PIC Level", i32 2}
 !1 = !{i32 7, !"PIE Level", i32 2}
 !2 = !{i32 2, !"RtLibUseGOT", i32 1}
-!3 = !{i32 1978613}
+!3 = !{i32 2174076}
 !4 = !{}
 !5 = !{i32 0, i32 2}
 !6 = !{i8 0, i8 2}
 !7 = !{i64 4}
-!8 = !{i64 8}
-!9 = !{i8 0, i8 5}
-!10 = !{i64 0, i64 2}
+!8 = !{i64 1}
+!9 = !{i64 8}
+!10 = !{i8 0, i8 5}
+!11 = !{i64 0, i64 2}

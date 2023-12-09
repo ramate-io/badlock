@@ -1,50 +1,31 @@
+// Relation definitions
 .decl def(var: symbol, inst: symbol)
-.decl use(var: symbol, inst: symbol)
-
 .input def
-.output def
-.input use
-.output use
-
-
-.decl kill(curr_inst: symbol, old_inst: symbol)
-.decl next(curr_inst: symbol, next_inst: symbol)
-.decl in(inst: symbol, def_inst: symbol)
 .decl out(inst: symbol, def_inst: symbol)
-
-.output kill
+.decl in(inst: symbol, def_inst: symbol)
+.decl next(prev_inst: symbol, inst: symbol)
 .input next
-.output next
-.output in
-.output out
+.decl edge(from_inst: symbol, to_inst: symbol, var: symbol)
+.decl path(from_inst: symbol, to_inst: symbol, var: symbol)
+.decl lock(inst: symbol, var: symbol)
+.input lock
+.decl release(inst: symbol, var: symbol)
+.input release
+.decl wrap(wrapper: symbol, var: symbol)
+.decl use(var: symbol, inst: symbol)
+.input use
+.decl deadlock(acquired_inst: symbol, var: symbol, reentrant_inst: symbol)
+.output deadlock
 
-
-.decl taint(inst: symbol)
-.decl edge(from: symbol, to: symbol)
-.decl path(from: symbol, to: symbol)
-.decl sanitizer(inst: symbol)
-.decl div(denom: symbol, inst: symbol)
-.decl alarm(inst: symbol)
-
-.input taint
-.output taint
-.output edge
-.output path
-.input sanitizer
-.output sanitizer
-.input div
-.output div
-.output alarm
-
-/* Reaching definition Analysis */
+// Reaching definitions
 kill(curr_inst, old_inst) :- def(var, curr_inst), def(var, old_inst).
 out(inst, inst) :- def(_, inst).
 out(inst, def_inst) :- in(inst, def_inst), !kill(inst, def_inst).
 in(inst, def_inst) :- out(prev_inst, def_inst), next(prev_inst, inst).
 
-/* Rules for taint Analysis */
-/* TODO: Add the rules for taint analysis */
-edge(from, to) :- def(v, from), use(v, to), in(to, from).
-path(from, to) :- taint(from), edge(from, to).
-path(prev, next) :- path(prev, almost), !sanitizer(almost), edge(almost, next).
-alarm(inst) :- path(_, inst).
+// Deadlock taint
+edge(from_inst, to_inst, var) :- def(var, from_inst), use(var, to_inst), in(to_inst, from_inst).
+edge(from_inst, to_inst, var) :- wrap(wrapper, var), use(wrapper, to_inst), in(to_inst, from_inst).
+path(from_inst, to_inst, var) :- lock(from_inst, var), edge(from_inst, to_inst, var).
+path(prev, next, var) :- path(prev, almost, var), !release(almost, var), edge(almost, next, var).
+deadlock(acquired_inst, var, reentrant_inst) :- lock(reentrant_inst, var), path(acquired_inst, reentrant_inst, var).

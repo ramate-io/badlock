@@ -7,7 +7,6 @@ std::string Extractor::instToString(Instruction *L) {
     std::string instrStr;
     llvm::raw_string_ostream rso(instrStr);
     L->print(rso);
-    rso << " @ ID: " << id;  // Append the unique identifier
     return rso.str();
 }
 
@@ -25,7 +24,7 @@ void Extractor::addUse(const InstMapTy &InstMap, Value *X, Instruction *L) {
   UseFile << toString(X) << "\t" << toString(L) << "\n";
 }
 
-void Extractor::addDiv(const InstMapTy &InstMap, Value *X, Instruction *L) {
+void Extractor::addLock(const InstMapTy &InstMap, Value *X, Instruction *L) {
   if (Constant *C = dyn_cast<Constant>(X))
     return;
   if (InstMap.find(X) == InstMap.end())
@@ -33,11 +32,7 @@ void Extractor::addDiv(const InstMapTy &InstMap, Value *X, Instruction *L) {
   DivFile << toString(X) << "\t" << toString(L) << "\n";
 }
 
-void Extractor::addTaint(const InstMapTy &InstMap, Instruction *L) {
-  TaintFile << toString(L) << "\n";
-}
-
-void Extractor::addSanitizer(const InstMapTy &InstMap, Instruction *L) {
+void Extractor::addRelease(const InstMapTy &InstMap, Value *X, Instruction *L) {
   SanitizerFile << toString(L) << "\n";
 }
 
